@@ -9,6 +9,8 @@ import Home from './Home';
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
+import Landing from './Landing';
+import NewListing from './NewListing';
 
 class App extends Component {
   render() {
@@ -18,7 +20,9 @@ class App extends Component {
         <Flash />
         <FetchUser>
           <Switch>
-            <ProtectedRoute exact path="/" component={Home} />
+            <Route exact path="/" component={Landing} />
+            <ProtectedRoute exact path="/userHome" component={Home} />
+            <ProtectedRoute exect path="/newListing" component={NewListing} />
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/register" component={Register} />
             <Route component={NoMatch} />

@@ -18,7 +18,7 @@ export const registerUser = (user, history) => {
     .then( (res) => {
       const { data: { data: user } } = res;
       dispatch(login(user));
-      history.push('/')
+      history.push('/userHome')
     })
     .catch( res => {
       const messages =
@@ -55,7 +55,7 @@ export const handleLogin = (user, history) => {
       .then(res => {
         const { data: { data: user } } = res;
         dispatch(login(user));
-        history.push('/');
+        history.push('/userHome');
       })
       .catch( res => {
         let errors = res.response.data.errors ? res.response.data.errors : ['Something went wrong']

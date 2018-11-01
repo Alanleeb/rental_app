@@ -3,6 +3,7 @@ import { Menu } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogout } from '../reducers/user';
+import { NewListing } from './NewListing';
 
 class NavBar extends Component {
   rightNavs = () => {
@@ -30,6 +31,20 @@ class NavBar extends Component {
     );
   }
 
+  leftNavs = () => {
+    const { user} = this.props;
+
+    if (user.id) {
+      return (
+        <Menu.Menu position='left'>
+          <Link to="/NewListing">
+          <Menu.Item name="New Listing" />
+        </Link>
+        </Menu.Menu>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
@@ -37,6 +52,7 @@ class NavBar extends Component {
           <Link to="/">
             <Menu.Item name="home" />
           </Link>
+          { this.leftNavs() }
           { this.rightNavs() }
         </Menu>
       </div>

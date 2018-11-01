@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_205938) do
+ActiveRecord::Schema.define(version: 2018_11_01_212225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "listings", force: :cascade do |t|
+    t.string "category"
+    t.string "subcategory"
+    t.string "title"
+    t.integer "price"
+    t.string "listingType"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
+    t.text "description"
+    t.string "sellerType"
+    t.string "sellerName"
+    t.string "sellerPhone"
+    t.string "sellerEmail"
+    t.string "Photos"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_listings_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -45,4 +66,5 @@ ActiveRecord::Schema.define(version: 2018_10_29_205938) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "listings", "users"
 end
